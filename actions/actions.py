@@ -49,7 +49,7 @@ def create_health_log(confirm_exercise, exercise, sleep, diet, stress, goal):
     except requests.exceptions.HTTPError as e:
         raise SystemError(e)
 
-    print(response.status_code)
+    print('submit status is {}'.format(response.status_code))
     return response
 
 
@@ -61,7 +61,6 @@ class ValidateHealthForm(Action):
     def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
     ) -> List[EventType]:
-        print('ValidateHealthForm')
         if tracker.get_slot('confirm_exercise'):
             required_slots = [
                 'confirm_exercise', 'exercise', 'sleep', 'diet', 'stress', 'goal'
@@ -88,7 +87,6 @@ class SubmitHealthForm(Action):
     def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
     ) -> List[EventType]:
-        print('SubmitHealthForm')
         response = create_health_log(
             tracker.get_slot('confirm_exercise'),
             tracker.get_slot('exercise'),

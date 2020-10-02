@@ -65,7 +65,7 @@ stories:
       - active_loop: null
       - action: utter_goodbye
 
-  - story: survey stop
+  - story: survey continue
     steps:
       - intent: greet
       - action: utter_greet
