@@ -19,7 +19,8 @@
 		"terminal.integrated.shell.linux": "/bin/zsh",
 		"python.pythonPath": "/usr/local/bin/python",
 		"python.linting.enabled": true,
-		"python.linting.pylintEnabled": true,
+		"python.linting.pylintEnabled": false,
+    	"python.linting.flake8Enabled": true,
 		"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
 		"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
 		"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
@@ -42,7 +43,8 @@
 		"pkief.material-icon-theme",
 		"dracula-theme.theme-dracula",
 		"coenraads.bracket-pair-colorizer",
-		"shardulm94.trailing-spaces"
+		"shardulm94.trailing-spaces",
+		"redhat.vscode-yaml"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

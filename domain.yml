@@ -94,10 +94,13 @@ responses:
   utter_ask_stress:
     - text: "It's your stress level low, medium or high?"
 
-  utter_ask_goals:
+  utter_ask_goal:
     - text: >
         Setting goals - even small ones - is a great way to focus your day.
         What do you want to accomplish today?
+
+  utter_submit:
+    - text: "All done!"
 
   utter_slot_values:
     - text: >
@@ -116,7 +119,48 @@ responses:
     - text: "Sorry, i didn't quite understood. Do you want to continue?"
 
 forms:
- - health_form
+  health_form:
+    confirm_exercise:
+      - type: from_intent
+        intent: affirm
+        value: true
+      - type: from_intent
+        intent: deny
+        value: false
+      - type: from_intent
+        intent: inform
+        value: true
+    exercise:
+      - type: from_text
+        intent: inform
+    sleep:
+      - type: from_entity
+        entity: sleep
+      - type: from_intent
+        intent: deny
+        value: false
+    stress:
+      - type: from_entity
+        entity: stress
+      - type: from_intent
+        intent: deny
+        value: true
+    diet:
+      - type: from_text
+        intent: inform
+      - type: from_text
+        intent: deny
+      - type: from_text
+        intent: affirm
+    goal:
+      - type: from_text
+        intent: inform
+      - type: from_text
+        intent: deny
+
+actions:
+  - validate_health_form
+  - submit_health_form
 
 session_config:
   session_expiration_time: 60

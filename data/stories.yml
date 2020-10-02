@@ -1,7 +1,6 @@
 version: "2.0"
 
 stories:
-
   - story: happy path
     steps:
       - intent: greet
@@ -44,73 +43,54 @@ stories:
       - intent: ask_exercise
       - action: utter_exercise_info
 
-  - story: survey happy path
+  - story: activate health form
     steps:
       - intent: greet
       - action: utter_greet
       - intent: affirm
-      - action: |
-          - health_form
-          - form{"name":"health_form"}
-          - form{"name":null}
-          - utter_slot_values
-      - intent: thankyou
-      - action: |
-          - utter_no_worries
-          - utter_goodbye
+      - action: health_form
+      - active_loop: health_form
 
-  # - story: survey stop
-  #   steps:
-  #     - intent: greet
-  #     - action: utter_greet
-  #     - intent: affirm
-  #     - action:
-  #       - health_form
-  #       - form{"name":"health_form"}
-  #     - intent: out_of_scope
-  #     - action:
-  #       - utter_ask_continue
-  #     - intent: deny
-  #     - action:
-  #       - action_deactivate_form
-  #       - form{"name":null}
-  #       - utter_goodbye
+  - story: survey stop
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: affirm
+      - action: health_form
+      - active_loop: health_form
+      - intent: out_of_scope
+      - action: utter_ask_continue
+      - intent: deny
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: utter_goodbye
 
-  # - story: survey continue
-  #   steps:
-  #     - intent: greet
-  #     - action: utter_greet
-  #     - intent: affirm
-  #     - action:
-  #       - health_form
-  #       - form{"name":"health_form"}
-  #     - intent: out_of_scope
-  #     - action:
-  #       - utter_ask_continue
-  #     - intent: affirm
-  #     - action:
-  #       - health_form
-  #       - form{"name":null}
-  #       - utter_slot_values
+  - story: survey stop
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: affirm
+      - action: health_form
+      - active_loop: health_form
+      - intent: out_of_scope
+      - action: utter_ask_continue
+      - intent: affirm
+      - action: health_form
 
-  # - story: no survey
-  #   steps:
-  #     - intent: greet
-  #     - action: utter_greet
-  #     - intent: deny
-  #     - action: utter_goodbye
+  - story: no survey
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: deny
+      - action: utter_goodbye
 
-  # - story: ask health questions form
-  #   steps:
-  #     - intent:  greet
-  #     - action: utter_greet
-  #     - intent: affirm
-  #     - action:
-  #       - health_form
-  #       - form{"name":"health_form"}
-  #     - intent: ask_exercise
-  #     - action:
-  #       - utter_exercise_info
-  #       - health_form
-  #       - form{"name":null}
-  #       - utter_goodbye
+  - story: ask health questions form
+    steps:
+      - intent:  greet
+      - action: utter_greet
+      - intent: affirm
+      - action: health_form
+      - active_loop: health_form
+      - intent: ask_exercise
+      - action: utter_exercise_info
+      - action: health_form
